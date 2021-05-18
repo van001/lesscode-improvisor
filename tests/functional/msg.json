@@ -1,0 +1,45 @@
+{
+    "version": "1",
+    "improvise": {
+        "workflows": [
+            {
+                "input": {
+                    "uuid": "10000005",
+                    "URL": "https://sds-processing-test.s3-us-west-2.amazonaws.com/ABLESTIK_ABP_2032S-EN.pdf"
+                },
+                "executor": {
+                    "type": "http-post",
+                    "url": "https://dev.albertinventmldev.com/api/v2/pdf2text/upload"
+                }
+            },
+            {
+                "executor": {
+                    "type": "http-post",
+                    "url": "https://dev.albertinventmldev.com/api/v2/docuclass"
+                }
+            }
+        ]
+    },
+    "result": {
+        "workflows": [
+            {
+                "executor": {
+                    "type": "s3-put",
+                    "Bucket": "sds-processing-test",
+                    "Key": "ICDRawMaterial0000178097338-new.json"
+                }
+            }
+        ]
+    },
+    "error": {
+        "workflows": [
+            {
+                "executor": {
+                    "type": "s3-put",
+                    "Bucket": "sds-processing-test",
+                    "Key": "ICDRawMaterial0000178097338.err.json"
+                }
+            }
+        ]
+    }
+}

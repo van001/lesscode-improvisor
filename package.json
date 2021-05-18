@@ -1,0 +1,10 @@
+{
+  "name": "lesscode-improvisor",
+  "version": "1.0.0",
+  "main": "improvisor.js",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.909.0",
+    "lesscode-fp": "^1.0.40"
+  }
+}
