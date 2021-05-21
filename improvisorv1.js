@@ -1,8 +1,8 @@
-const { $, $M, lreverse, lmap, lhead } = require('lesscode-fp')
+const { $, $M, lreverse, lmap, lhead, } = require('lesscode-fp')
 const Executors = require('./executors')
 
 // Error Handler
-const Error = msg => async err =>  { Workflows(lreverse(msg.error.workflows))({ res: [], data: err }); throw { StatusCode: err.statusCode, err : JSON.stringify(err) }}
+const Error = msg => async err =>  { if (err.statusCode > 500) { Workflows(lreverse(msg.error.workflows))({ res: [], data: err })}; throw { StatusCode: err.statusCode, err : JSON.stringify(err) }}
 
 // Result handler
 const Result = msg => async data => Workflows(lreverse(msg.result.workflows))({ res: [], data: data.res })
