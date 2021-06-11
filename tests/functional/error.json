@@ -1,0 +1,66 @@
+{
+    "version": "1",
+    "improvise": {
+        "workflows": [
+            {
+                "input": {
+                    "uuid": "be6341e3-7b5a-4653-a8ec-b6069ad61ee8",
+                    "URL": "https://sds-dump.s3-us-west-2.amazonaws.com/08006D62CFB73F69C12576580031EEE3/88100928_UM045383-00Gold-WhiteToll_GIV.pdf",
+                    "rawMaterialName": "Parfümöl Gold/White Toll (UM 045383/00)",
+                    "manufacturerName": "Givaudan",
+                    "revisionDate": "2008-08-08 00:00:00.000000"
+                },
+                "executor": {
+                    "type": "http-post",
+                    "url": "https://dev.albertinventmldev.com/api/v2/pdf2text/upload"
+                }
+            },
+            {
+                "executor": {
+                    "type": "http-post",
+                    "url": "https://dev.albertinventmldev.com/api/v2/docuclass"
+                }
+            },
+            {
+                "executor": {
+                    "type": "http-post",
+                    "url": "https://dev.albertinventmldev.com/api/v2/doccluster"
+                }
+            },
+            {
+                "executor": {
+                    "type": "http-post",
+                    "url": "https://demo.albertinvent.com/api/duplicate/bulk"
+                }
+            },
+            {
+                "executor": {
+                    "type": "http-post",
+                    "url": "https://dev.albertinventmldev.com/api/v2/invlogic"
+                }
+            }
+        ]
+    },
+    "result": {
+        "workflows": [
+            {
+                "executor": {
+                    "type": "s3-put",
+                    "Bucket": "sds-dump-processed",
+                    "Key": "success_unique_direct_data/08006D62CFB73F69C12576580031EEE3/88100928_UM045383-00Gold-WhiteToll_GIV.pdf.json"
+                }
+            }
+        ]
+    },
+    "error": {
+        "workflows": [
+            {
+                "executor": {
+                    "type": "s3-put",
+                    "Bucket": "sds-dump-processed",
+                    "Key": "failure_unique_direct_data/08006D62CFB73F69C12576580031EEE3/88100928_UM045383-00Gold-WhiteToll_GIV.pdf.json"
+                }
+            }
+        ]
+    }
+}

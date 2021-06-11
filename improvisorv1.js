@@ -2,7 +2,14 @@ const { $, $M, lreverse, lmap, lhead, } = require('lesscode-fp')
 const Executors = require('./executors')
 
 // Error Handler
-const Error = msg => async err =>  { if (err.statusCode <= 500) { Workflows(lreverse(msg.error.workflows))({ res: [], data: err }); return { StatusCode: 200}}; throw { StatusCode: err.statusCode, err : JSON.stringify(err) }}
+const Error = msg => async err => {
+    if (err.response.status == undefined || err.response.status <= 500) {
+        Workflows(lreverse(msg.error.workflows))({ res: [], data:  JSON.stringify({ status : err.response.status, msg : err.response.statusText, data : err.response.data})}); console.log('test....'); return { StatusCode: 200 }
+    }
+    else {
+        return { StatusCode: err.statusCode, err: JSON.stringify(err) }
+    }
+}
 
 // Result handler
 const Result = msg => async data => Workflows(lreverse(msg.result.workflows))({ res: [], data: data.res })
