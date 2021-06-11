@@ -7,7 +7,7 @@ const Error = msg => async err => {
         Workflows(lreverse(msg.error.workflows))({ res: [], data: JSON.stringify({ status: err.response.status, msg: err.response.statusText, data: err.response.data }) }); return { StatusCode: 200 }
     }
     else {
-        return { StatusCode: err.response.status || 503, err: JSON.stringify({ status: err.response.status, msg: err.response.statusText, data: err.response.data }) }
+        throw { StatusCode: err.response.status || 503, err: JSON.stringify({ status: err.response.status, msg: err.response.statusText, data: err.response.data }) }
     }
 }
 
