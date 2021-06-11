@@ -1,0 +1,66 @@
+{
+    "version": "1",
+    "improvise": {
+        "workflows": [
+            {
+                "input": {
+                    "uuid": "032ed97d-ce07-43c5-9576-6ae9287ce736",
+                    "URL": "https://sds-dump.s3-us-west-2.amazonaws.com/012BD652137DC436C12570220034B4DD/nipol1009.pdf",
+                    "rawMaterialName": "Nipol 1009",
+                    "manufacturerName": "Zeon Corporation",
+                    "revisionDate": "2003-06-12 00:00:00.000000"
+                },
+                "executor": {
+                    "type": "http-post",
+                    "url": "https://dev.albertinventmldev.com/api/v2/pdf2text/upload"
+                }
+            },
+            {
+                "executor": {
+                    "type": "http-post",
+                    "url": "https://dev.albertinventmldev.com/api/v2/docuclass"
+                }
+            },
+            {
+                "executor": {
+                    "type": "http-post",
+                    "url": "https://dev.albertinventmldev.com/api/v2/doccluster"
+                }
+            },
+            {
+                "executor": {
+                    "type": "http-post",
+                    "url": "https://demo.albertinvent.com/api/duplicate/bulk"
+                }
+            },
+            {
+                "executor": {
+                    "type": "http-post",
+                    "url": "https://dev.albertinventmldev.com/api/v2/invlogic"
+                }
+            }
+        ]
+    },
+    "result": {
+        "workflows": [
+            {
+                "executor": {
+                    "type": "s3-put",
+                    "Bucket": "sds-dump-processed",
+                    "Key": "success_unique_direct_data/012BD652137DC436C12570220034B4DD_nipol1009.pdf.json"
+                }
+            }
+        ]
+    },
+    "error": {
+        "workflows": [
+            {
+                "executor": {
+                    "type": "s3-put",
+                    "Bucket": "sds-dump-processed",
+                    "Key": "failure_unique_direct_data/012BD652137DC436C12570220034B4DD_nipol1009.pdf.json"
+                }
+            }
+        ]
+    }
+}
