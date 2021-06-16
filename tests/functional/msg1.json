@@ -38,6 +38,11 @@
                     "type": "http-post",
                     "url": "https://dev.albertinventmldev.com/api/v2/invlogic"
                 }
+            },
+            {
+                "executor": {
+                    "type": "logger"
+                }
             }
         ]
     },

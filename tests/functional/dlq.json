@@ -1,0 +1,66 @@
+{
+    "version": "1",
+    "improvise": {
+      "workflows": [
+        {
+          "input": {
+            "uuid": "E2F0A63EBFF86DEFC12584700028FEA1",
+            "URL": "https://sds-dump.s3-us-west-2.amazonaws.com/E2F0A63EBFF86DEFC12584700028FEA1/20190715_SDS_GB_EN(1).pdf",
+            "rawMaterialName": "Potassium carbonate 99-100% granules",
+            "manufacturerName": "Evonik Degussa (Oqema, Brenntag GmbH)",
+            "revisionDate": "2019-07-09 00:00:00.000000"
+          },
+          "executor": {
+            "type": "http-post",
+            "url": "https://dev.albertinventmldev.com/api/v2/pdf2text/upload"
+          }
+        },
+        {
+          "executor": {
+            "type": "http-post",
+            "url": "https://dev.albertinventmldev.com/api/v2/docuclass"
+          }
+        },
+        {
+          "executor": {
+            "type": "http-post",
+            "url": "https://dev.albertinventmldev.com/api/v2/doccluster"
+          }
+        },
+        {
+          "executor": {
+            "type": "http-post",
+            "url": "https://demo.albertinvent.com/api/duplicate/bulk"
+          }
+        },
+        {
+          "executor": {
+            "type": "http-post",
+            "url": "https://dev.albertinventmldev.com/api/v2/invlogic"
+          }
+        }
+      ]
+    },
+    "result": {
+      "workflows": [
+        {
+          "executor": {
+            "type": "s3-put",
+            "Bucket": "sds-dump-processed",
+            "Key": "success_unique_direct_data/E2F0A63EBFF86DEFC12584700028FEA1_20190715_SDS_GB_EN(1).pdf.json"
+          }
+        }
+      ]
+    },
+    "error": {
+      "workflows": [
+        {
+          "executor": {
+            "type": "s3-put",
+            "Bucket": "sds-dump-processed",
+            "Key": "failure_unique_direct_data/E2F0A63EBFF86DEFC12584700028FEA1_20190715_SDS_GB_EN(1).pdf.json"
+          }
+        }
+      ]
+    }
+  }
