@@ -1,0 +1,34 @@
+{
+    "version": "1",
+    "improvise": {
+        "workflows": [
+            {
+            
+                "executor": {
+                    "type": "http-get",
+                    "url": "https://dev.albertinventdev.com/api/v3/propmodels/models",
+                    "headers" : { "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDQ2LCJlbWFpbCI6ImVuZ2luZWVyaW5nQGFsYmVydGludmVudC5jb20iLCJ1c2VyVHlwZUlkIjoxLCJuYW1lIjoiU3VwZXIgQWRtaW4iLCJpc1Rva2VuVmVyaWZpZWQiOjEsImlhdCI6MTYxNzA0OTA4NH0.n1WxvHkvACAzpquRSBQxTjVDJx2LYVpLdvTVJtQieY4"}
+                }
+            },
+            {
+                "executor": {
+                    "type": "logger"
+                }
+            }
+        ]
+    },
+    "result": {
+        "workflows": [
+            {
+                
+            }
+        ]
+    },
+    "error": {
+        "workflows": [
+            {
+                
+            }
+        ]
+    }
+}

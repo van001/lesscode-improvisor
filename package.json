@@ -6,5 +6,15 @@
   "dependencies": {
     "aws-sdk": "^2.909.0",
     "lesscode-fp": "^1.0.40"
+  },
+  "scripts": {
+    "func": "mocha --recursive 'test/functional/*.js'"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "eslint": "^7.13.0",
+    "jest": "^26.4.2",
+    "mocha": "^8.2.1"
   }
 }
